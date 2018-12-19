@@ -1,0 +1,153 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-weight: 600;
+    text-align: center;
+    font-size: 2.25rem;
+}
+
+ul,
+ol {
+    list-style-position: inside;
+}
+
+input,
+button {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+/* BUTTON */
+
+button {
+    border: none;
+    background: #265f82;
+    color: white;
+    cursor: pointer;
+    padding: 1rem;
+    transition: background .3s ease;
+}
+
+button:hover {
+    background: #1F4C69;
+    color: white;
+}
+
+button:disabled {
+    cursor: default;
+    background: #698ea5;
+}
+
+/* CHAT */
+
+.chat {
+    display: flex;
+}
+
+/* sidebar */
+
+.chat__sidebar {
+    flex: 0 0 30%;
+    height: 100vh;
+    background: linear-gradient(325deg, rgba(39, 107, 130, 1) 0%, rgba(49, 84, 129, 1) 100%);
+    overflow-y: scroll;
+}
+
+.chat__sidebar h3 {
+    color: #e6eaee;
+    margin: 1rem 2rem;
+    text-align: left;
+}
+
+/* main */
+
+.chat__main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    flex: 1;
+}
+
+.chat__messages {
+    flex-grow: 1;
+    overflow-y: scroll;
+    padding: 1rem;
+    word-break: break-all;
+}
+
+/* footer */
+
+.chat__footer {
+    background: #e6eaee;
+    display: flex;
+    padding: 1rem;
+}
+
+.chat__footer form {
+    flex: 1;
+    display: flex;
+}
+
+.chat__footer form>* {
+    margin-right: 1rem;
+}
+
+.chat__footer input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border: none;
+}
+
+@media only screen and (min-width: 62.5em) {
+    .chat__sidebar {
+        flex: 0 0 30rem;
+    }
+}
+
+@media only screen and (max-width: 45em) {
+    .chat__sidebar {
+        flex: 0 0 20rem;
+    }
+}
+
+@media only screen and (max-width: 37.5em) {
+    html {
+        font-size: 56.25%; 
+    }
+
+    .chat__footer {
+        flex-direction: column;
+    }
+
+    .chat__footer form {
+        margin-bottom: 1rem;
+    }
+
+    .chat__footer button {
+        margin-right: 0;
+    }
+}
+
+@media only screen and (max-width: 31.25em) {
+    .chat__sidebar {
+        display: none;
+    }
+}

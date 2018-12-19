@@ -24,11 +24,11 @@ io.on('connection', socket => {
         console.log('User was disconnected');
     });
 
-
     socket.on('createMessage', (message, callback) => {
         console.log('create message', message);
 
         io.emit('newMessage', generateMessage(message.from, message.text));
+        callback();
     });
 
     socket.on('createLocationMessage', ({ latitude, longitude }) => {
