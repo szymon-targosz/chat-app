@@ -115,6 +115,7 @@ button:disabled {
 /* footer */
 
 .chat__footer {
+    flex-shrink: 0;
     background: #e6eaee;
     display: flex;
     padding: 1rem;
