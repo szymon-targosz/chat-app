@@ -11,17 +11,22 @@ const scrollToBottom = () => {
     const newMessageHeight = newMessage.innerHeight();
     const lastMessageHeight = newMessage.prev().innerHeight();
 
-    if(clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
+    if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
         messages.scrollTop(scrollHeight);
     }
 };
 
 socket.on('connect', () => {
-    console.log('Connected to server');
-});
+    const params = $.deparam(window.location.search);
 
-socket.on('disconnect', () => {
-    console.log('Disconnected from server');
+    socket.emit('join', params, err => {
+        if (err) {
+            alert('Name and room are required.');
+            location.assign('/');
+        } else {
+            console.log('no error');
+        }
+    })
 });
 
 socket.on('newMessage', ({ from, text, createdAt }) => {
@@ -39,6 +44,19 @@ socket.on('newLocationMessage', ({ from, url, createdAt }) => {
     messages.append(html);
     scrollToBottom();
 });
+
+socket.on('updateUsersList', users => {
+    const ol = $('<ol>');
+    users.forEach(user => {
+        ol.append($('<li>').text(user));
+    });
+    $('#users').html(ol);
+});
+
+socket.on('disconnect', () => {
+    console.log('Disconnected from server');
+});
+
 
 $('#message-form').on('submit', e => {
     e.preventDefault();
