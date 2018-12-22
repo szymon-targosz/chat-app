@@ -86,6 +86,7 @@ button:disabled {
 .form-field select {
     border: 1px solid #e1e1e1;
     padding: 1rem;
+    margin-top: .5rem;
 }
 
 /* CHAT */
