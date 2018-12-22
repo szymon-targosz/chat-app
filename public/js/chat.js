@@ -21,7 +21,7 @@ socket.on('connect', () => {
 
     socket.emit('join', params, err => {
         if (err) {
-            alert('Name and room are required.');
+            alert(err);
             location.assign('/');
         } else {
             console.log('no error');

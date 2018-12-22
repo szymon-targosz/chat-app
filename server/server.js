@@ -19,8 +19,15 @@ app.use(express.static(publicPath));
 io.on('connection', socket => {
 
     socket.on('join', ({ name, room }, callback) => {
-        if (!isRealString(name) || !isRealString(room)) {
+        room = room.trim().toLowerCase(); 
+        name = name.trim().toLowerCase(); 
+
+        if (!isRealString(name) || !isRealString(room)) { 
             return callback('Name and room are required');
+        }
+
+        if (users.getUsersList(room).includes(name)) {
+            return callback(`Name "${name}" is already taken.`);
         }
 
         socket.join(room);
@@ -56,7 +63,7 @@ io.on('connection', socket => {
         const user = users.getUser(socket.id);
         if (user) {
             io.to(user.room).emit('newLocationMessage', generateLocationMessage(user.name, latitude, longitude));
-        }    
+        }
     });
 });
 
